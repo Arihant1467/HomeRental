@@ -5,7 +5,7 @@ HomeRental is a dockerized MERN stack app which I developed towards my learning 
 ### To launch the entire stack
 This launches the services that make up the app so they can be run together in an isolated environment.
 ```
-docker-compose up
+docker-compose up -d
 ```
 
 ### To down the entire stack
@@ -13,7 +13,17 @@ docker-compose up
 docker-compose down
 ```
 
-### To launch them individually
+### To re-run the containers that have stopped
+```
+docker-compose up --no-recreate
+```
+
+### To show running containers
+```
+docker-compose ps
+```
+
+### To launch the containers individually
 
 - Create virtual docker network
   ```
