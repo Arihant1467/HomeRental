@@ -5,7 +5,8 @@ const mongodb_host = process.env.MONGODB_HOST
 const mongodb_port = process.env.MONGODB_PORT
 const mongodb_username = process.env.MONGODB_USERNAME
 const mongodb_password = process.env.MONGODB_PASSWORD
-const mongo_url = `mongodb://${mongodb_username}:${mongodb_password}@${mongodb_host}:${mongodb_port}/homeaway?authSource=admin`
+const authenticating_db = process.env.AUTHENTICATING_DATABASE
+const mongo_url = `mongodb://${mongodb_username}:${mongodb_password}@${mongodb_host}:${mongodb_port}/homeaway?authSource=${authenticating_db}`
 
 console.log(`Mongo url : ${mongo_url}`)
 var _db;

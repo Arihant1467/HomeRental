@@ -23,6 +23,8 @@ docker-compose up --no-recreate
 docker-compose ps
 ```
 
+More reference on usage of docker-compose cli [here](https://docs.docker.com/compose/reference/overview/)
+
 ### To launch the containers individually
 
 - Create virtual docker network
@@ -34,8 +36,8 @@ docker-compose ps
   ```
   docker run -d --name MONGODB_CONTAINER_NAME \
     --network=homeaway \
-    -p 27017:27017
-	-e MONGO_INITDB_ROOT_USERNAME=MONGODB_USERNAME \
+    -p 27017:27017 \
+	  -e MONGO_INITDB_ROOT_USERNAME=MONGODB_USERNAME \
     -e MONGO_INITDB_ROOT_PASSWORD=MONGODB_PASSWORD \
     mongo
   ```
@@ -45,8 +47,8 @@ docker-compose ps
   docker run -d --name homerental-backend \
 	--network=homeaway \
     -p 3500:3500 \
-	-e MONGODB_USERNAME=USERNAME_OF_MONGODB \
-	-e MONGODB_PASSWORD=PASSWORD_OF_MONGODB \
+	  -e MONGODB_USERNAME=USERNAME_OF_MONGODB \
+	  -e MONGODB_PASSWORD=PASSWORD_OF_MONGODB \
     -e MONGODB_HOST=HOSTNAME_WHERE_MONGODB_LISTENING \
     -e MONGODB_PORT=PORT_WHERE_MONGODB_LISTENING \
     -e AUTHENTICATING_DATABASE=DB_NAME_WHERE_CREDENTIALS_NEED_TO_AUTHENTICATE \

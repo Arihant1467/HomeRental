@@ -1,10 +1,11 @@
-REFROM node:10.15.1
+FROM node:10.15.1
 
 WORKDIR /usr/src/app
 
 COPY . .
 
-ENV PROXY_BACKEND="localhost:3500"
+ENV PROXY_HOST="localhost"
+ENV PROXY_PORT="3500"
 
 RUN npm install
 
