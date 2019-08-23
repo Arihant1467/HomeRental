@@ -1,20 +1,5 @@
 version : '3.0'
-
 services :
-
-
-  mongodb:
-    image: mongo:latest
-    restart: always
-    container_name: mongodb
-    networks:
-      - homerental
-    ports:
-       - "27017:27017"
-    environment:
-      - MONGO_INITDB_ROOT_USERNAME=homerental
-      - MONGO_INITDB_ROOT_PASSWORD=homerental
-  
   frontend:
     build: ./homerental-frontend
     image: homerental-frontend 
@@ -31,6 +16,8 @@ services :
     build: ./homerental-backend
     image: homerental-backend
     container_name: homerental-backend
+    depends_on:
+      - mongodb
     networks:
       - homerental
     ports:
@@ -41,6 +28,16 @@ services :
       - AUTHENTICATING_DATABASE=admin
       - MONGODB_USERNAME=homerental
       - MONGODB_PASSWORD=homerental
+  
+  mongodb:
+    image: mongo:latest
+    restart: always
+    container_name: mongodb
+    networks:
+      - homerental
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=homerental
+      - MONGO_INITDB_ROOT_PASSWORD=homerental
   
 networks:
   homerental:

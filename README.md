@@ -7,6 +7,7 @@ This launches the services that make up the app so they can be run together in a
 ```
 docker-compose up -d
 ```
+Open the app [here](http://localhost:3000)
 
 ### To down the entire stack
 ```
@@ -29,13 +30,13 @@ More reference on usage of docker-compose cli [here](https://docs.docker.com/com
 
 - Create virtual docker network
   ```
-  docker network create homeaway
+  docker network create homerental
   ```
 
 - MongoDB
   ```
   docker run -d --name MONGODB_CONTAINER_NAME \
-    --network=homeaway \
+    --network=homerental \
     -p 27017:27017 \
 	  -e MONGO_INITDB_ROOT_USERNAME=MONGODB_USERNAME \
     -e MONGO_INITDB_ROOT_PASSWORD=MONGODB_PASSWORD \
@@ -45,7 +46,7 @@ More reference on usage of docker-compose cli [here](https://docs.docker.com/com
 - Backend
   ```
   docker run -d --name homerental-backend \
-	--network=homeaway \
+	--network=homerental \
     -p 3500:3500 \
 	  -e MONGODB_USERNAME=USERNAME_OF_MONGODB \
 	  -e MONGODB_PASSWORD=PASSWORD_OF_MONGODB \
@@ -58,12 +59,12 @@ More reference on usage of docker-compose cli [here](https://docs.docker.com/com
 - Frontend
   ```
   docker run -d --name homerental-frontend \
-    --network=homeaway \
+    --network=homerental \
     -p 3000:3000 \
     -e PROXY_BACKEND=ADDRESS&PORT_NUMBER_WHERE_YOUR_BACKEND_IS_LISTENING
     homerental-frontend
   ```
-### Launch Your website
-```
-firefox http://HOST_NAME:3000
-```
+- Launch the website
+  ```
+  firefox http://HOST_NAME:3000
+  ```
