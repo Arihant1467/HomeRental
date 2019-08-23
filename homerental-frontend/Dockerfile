@@ -1,0 +1,13 @@
+REFROM node:10.15.1
+
+WORKDIR /usr/src/app
+
+COPY . .
+
+ENV PROXY_BACKEND="localhost:3500"
+
+RUN npm install
+
+EXPOSE 3000
+
+CMD ["npm", "start"]
