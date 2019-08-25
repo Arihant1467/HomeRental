@@ -7,7 +7,7 @@ This launches the services that make up the app so they can be run together in a
 ```
 docker-compose up -d
 ```
-Open the app [here](http://localhost:3000)
+Open the app at [http://localhost:3000](http://localhost:3000)
 
 ### To down the entire stack
 ```
@@ -43,10 +43,11 @@ More reference on usage of docker-compose cli [here](https://docs.docker.com/com
     mongo
   ```
 
-- Backend
+- Backend 
   ```
+  docker build -t homerental-backend -f ./homerental-backend/Dockerfile ./homerental-backend/.
   docker run -d --name homerental-backend \
-	--network=homerental \
+    --network=homerental \
     -p 3500:3500 \
 	  -e MONGODB_USERNAME=USERNAME_OF_MONGODB \
 	  -e MONGODB_PASSWORD=PASSWORD_OF_MONGODB \
@@ -59,6 +60,7 @@ More reference on usage of docker-compose cli [here](https://docs.docker.com/com
 
 - Frontend
   ```
+  docker build -t homerental-frontend -f ./homerental-frontend/Dockerfile ./homerental-frontend/.
   docker run -d --name homerental-frontend \
     --network=homerental \
     -p 3000:3000 \
