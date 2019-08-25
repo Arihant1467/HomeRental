@@ -11,9 +11,17 @@ const mongo_url = `mongodb://${mongodb_username}:${mongodb_password}@${mongodb_h
 console.log(`Mongo url : ${mongo_url}`)
 var _db;
 
+const mongOptions = { 
+    reconnectTries: 60,
+    reconnectInterval: 1000,
+    useNewUrlParser:true,
+    autoReconnect : true
+}
+
+
 const connectMongo = async function(){
     try{
-        const db = await MongoClient.connect(mongo_url,{useNewUrlParser:true});
+        const db = await MongoClient.connect(mongo_url,mongOptions);
         _db = db
         return Promise.resolve(db);
     }catch(error){

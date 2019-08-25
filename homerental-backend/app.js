@@ -8,6 +8,7 @@ var cookieParser = require("cookie-parser");
 var fs = require('fs')
 var cors = require('cors');
 var multer  = require('multer')
+var MongoClient = require('mongodb').MongoClient
 const { check, validationResult } = require('express-validator/check');
 var userTable = require('./db/users.js');
 var propertyTable = require('./db/property.js');
@@ -369,4 +370,6 @@ app.get("/inbox/:userid", (request,response)=>{
 var server = app.listen(port,()=>{
     console.log(`Homeaway backend server has started to listen at port ${port}`);
 });
+
+
      

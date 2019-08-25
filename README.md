@@ -53,6 +53,7 @@ More reference on usage of docker-compose cli [here](https://docs.docker.com/com
     -e MONGODB_HOST=HOSTNAME_WHERE_MONGODB_LISTENING \
     -e MONGODB_PORT=PORT_WHERE_MONGODB_LISTENING \
     -e AUTHENTICATING_DATABASE=DB_NAME_WHERE_CREDENTIALS_NEED_TO_AUTHENTICATE \
+    -e WAIT_HOSTS=HOST:PORT of MongoDB to make a connection before starting the server
 	homerental-backend
   ```
 
@@ -61,10 +62,12 @@ More reference on usage of docker-compose cli [here](https://docs.docker.com/com
   docker run -d --name homerental-frontend \
     --network=homerental \
     -p 3000:3000 \
-    -e PROXY_BACKEND=ADDRESS&PORT_NUMBER_WHERE_YOUR_BACKEND_IS_LISTENING
+    -e PROXY_HOST=BACKEND_HOSTNAME \
+    -e PROXY_PORT=BACKEND_HOST_PORT \
     homerental-frontend
   ```
 - Launch the website
   ```
   firefox http://HOST_NAME:3000
+  chrome http://HOST_NAME:3000
   ```

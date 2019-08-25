@@ -1,16 +1,23 @@
 version : '3.0'
+
+networks:
+  homerental:
+    driver: bridge
+
+
 services :
-  frontend:
-    build: ./homerental-frontend
-    image: homerental-frontend 
-    container_name: homerental-frontend
+  mongodb:
+    image: mongo:latest
+    restart: always
+    container_name: mongodb
     networks:
       - homerental
     ports:
-       - "3000:3000"
+      - 27017:27017
     environment:
-      - PROXY_HOST=localhost
-      - PROXY_PORT=3500
+      - MONGO_INITDB_ROOT_USERNAME=homerental
+      - MONGO_INITDB_ROOT_PASSWORD=homerental
+  
   
   backend:
     build: ./homerental-backend
@@ -28,17 +35,17 @@ services :
       - AUTHENTICATING_DATABASE=admin
       - MONGODB_USERNAME=homerental
       - MONGODB_PASSWORD=homerental
+      - WAIT_HOSTS=mongodb:27017
   
-  mongodb:
-    image: mongo:latest
-    restart: always
-    container_name: mongodb
+  frontend:
+    build: ./homerental-frontend
+    image: homerental-frontend 
+    container_name: homerental-frontend
     networks:
       - homerental
+    ports:
+       - "3000:3000"
     environment:
-      - MONGO_INITDB_ROOT_USERNAME=homerental
-      - MONGO_INITDB_ROOT_PASSWORD=homerental
+      - PROXY_HOST=localhost
+      - PROXY_PORT=3500
   
-networks:
-  homerental:
-    driver: bridge
